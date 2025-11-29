@@ -8,7 +8,7 @@ const Portfolio = () => {
       category: "Commercial",
       description: "A cinematic brand story for a tech startup",
       video: "https://youtu.be/IY0rHtpD8QQ?si=s9-2cSYy8v5OlP4O",
-      thumbnail: "\src\assets\image1 .jpg", 
+      thumbnail: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1184&q=80", 
     },
     {
       title: "Music Video Production",
