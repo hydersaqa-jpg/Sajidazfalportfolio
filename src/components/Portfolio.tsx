@@ -1,7 +1,9 @@
-import { Play } from "lucide-react";
-import { Image } from "lucide-react";
+import { useState } from "react";
+import { Play, X } from "lucide-react";
 
 const Portfolio = () => {
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
+
   const projects = [
     {
       title: "Corporate Brand Film",
@@ -41,6 +43,20 @@ const Portfolio = () => {
     },
   ];
 
+  const getEmbedUrl = (url: string) => {
+    let videoId = "";
+    if (url.includes("youtu.be")) {
+      videoId = url.split("/").pop()?.split("?")[0] || "";
+    } else if (url.includes("watch?v=")) {
+      videoId = new URL(url).searchParams.get("v") || "";
+    }
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : "";
+  };
+
+  const handleProjectClick = (videoUrl?: string) => {
+    if (videoUrl) setPlayingVideo(videoUrl);
+  };
+
   return (
     <section id="portfolio" className="py-24">
       <div className="container mx-auto px-4">
@@ -57,19 +73,11 @@ const Portfolio = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {projects.map((project, index) => {
             const hasVideo = !!project.video;
-            const Wrapper = hasVideo ? "a" : "div";
-            const wrapperProps = hasVideo
-              ? {
-                  href: project.video,
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                }
-              : {};
 
             return (
-              <Wrapper
+              <div
                 key={index}
-                {...wrapperProps}
+                onClick={() => handleProjectClick(project.video)}
                 className={`group relative overflow-hidden rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-500 animate-fade-in-up hover:scale-105 ${
                   hasVideo ? "cursor-pointer" : ""
                 }`}
@@ -82,13 +90,13 @@ const Portfolio = () => {
                       alt={project.title}
                       className="w-full h-full object-cover absolute inset-0"
                     />
-                  )}
-                  <div className="absolute inset-0 flex items-center justify-center bg-secondary/50 backdrop-blur-sm">
+                  )} 
+                  {/* Overlay with Play button, appears on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Play className="w-8 h-8 text-primary fill-primary" />
                     </div>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
                 <div className="p-6">
@@ -102,11 +110,36 @@ const Portfolio = () => {
                   </h3>
                   <p className="text-sm text-muted-foreground">{project.description}</p>
                 </div>
-              </Wrapper>
+              </div>
             );
           })}
         </div>
       </div>
+
+      {playingVideo && (
+        <div
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center animate-fade-in"
+          onClick={() => setPlayingVideo(null)}
+        >
+          <div
+            className="relative w-full max-w-4xl aspect-video bg-black rounded-lg shadow-2xl mx-4"
+            onClick={(e) => e.stopPropagation()} // Prevents closing modal when clicking on the video
+          >
+            <button
+              onClick={() => setPlayingVideo(null)}
+              className="absolute -top-4 -right-4 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center z-10 hover:scale-110 transition-transform"
+            >
+              <X size={24} />
+            </button>
+            <iframe
+              src={getEmbedUrl(playingVideo)}
+              className="w-full h-full rounded-lg"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
