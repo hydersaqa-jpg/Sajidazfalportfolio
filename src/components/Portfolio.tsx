@@ -16,30 +16,33 @@ const Portfolio = () => {
       title: "Music Video Production",
       category: "Music",
       description: "High-energy music video with dynamic transitions",
-      video: "https://youtu.be/example-video-link", // Example link
-      thumbnail: "/path-to-music-thumbnail.jpg", // Example path
+      video: "https://youtu.be/example-video-link", 
+      thumbnail: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
     },
     {
       title: "Documentary Series",
       category: "Documentary",
       description: "5-part documentary on modern innovation",
+      thumbnail: "https://images.unsplash.com/photo-1488998427799-e3362cec87c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
     },
     {
       title: "Social Media Campaign",
       category: "Social Media",
       description: "Viral content creation for major brands",
+      thumbnail: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
     },
     {
       title: "Wedding Cinematic",
       category: "Wedding",
       description: "Emotional storytelling for special moments",
       video: "https://youtu.be/another-example-link", // Example link
-      thumbnail: "/path-to-wedding-thumbnail.jpg", // Example path
+      thumbnail: "https://images.unsplash.com/photo-1519741497674-6114d186b2b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
     },
     {
       title: "Product Showcase",
       category: "Commercial",
       description: "Premium product visualization and animation",
+      thumbnail: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
     },
   ];
 
@@ -52,7 +55,7 @@ const Portfolio = () => {
     }
     return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : "";
   };
-
+/*  */
   const handleProjectClick = (videoUrl?: string) => {
     if (videoUrl) setPlayingVideo(videoUrl);
   };
