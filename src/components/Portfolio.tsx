@@ -13,7 +13,7 @@ const Portfolio = () => {
       thumbnail: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1184&q=80", 
     },
     {
-      title: "Music Video Production",
+      title: "Product Videoshoot",
       category: "Music",
       description: "High-energy music video with dynamic transitions",
       video: "https://youtu.be/example-video-link", 
